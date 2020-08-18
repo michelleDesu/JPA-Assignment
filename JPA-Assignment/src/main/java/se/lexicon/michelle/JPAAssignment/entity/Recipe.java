@@ -1,9 +1,6 @@
 package se.lexicon.michelle.JPAAssignment.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,6 +12,15 @@ public class Recipe {
 
     private String recipeName;
     private List<RecipeIngredient> recipeIngredients;
+
+    @OneToOne(cascade ={
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    } ,
+            fetch = FetchType.EAGER
+    )
     private RecipeInstruction instruction;
     private List<RecipeCategory> categories;
 
