@@ -9,19 +9,6 @@ public class RecipeIngredient {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private String recipeIngredientID;
 
-    @OneToMany( cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE,
-                    CascadeType.DETACH,
-                    CascadeType.REFRESH
-            },
-            fetch = FetchType.LAZY
-
-    )
-    private Ingredient ingredient;
-    private double amount;
-    private Measurement measurement;
-
     @ManyToOne( cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
@@ -29,6 +16,20 @@ public class RecipeIngredient {
             CascadeType.REFRESH
     },
             fetch = FetchType.EAGER
+
+    )
+    private Ingredient ingredient;
+    private double amount;
+    private Measurement measurement;
+
+    //ManyToOne???
+    @OneToMany( cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    },
+            fetch = FetchType.LAZY
 
     )
     Recipe recipe;
