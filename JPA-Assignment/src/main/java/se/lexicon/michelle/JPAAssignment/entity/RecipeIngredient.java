@@ -7,16 +7,16 @@ public class RecipeIngredient {
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
-    Reciepe reciepe;
+    Recipe recipe;
 
     public RecipeIngredient() {
     }
 
-    public RecipeIngredient(Ingredient ingredient, double amount, Measurement measurement, Reciepe reciepe) {
+    public RecipeIngredient(Ingredient ingredient, double amount, Measurement measurement, Recipe reciepe) {
         this.ingredient = ingredient;
         this.amount = amount;
         this.measurement = measurement;
-        this.reciepe = reciepe;
+        this.recipe = reciepe;
     }
 
     public String getRecipeIngredientID() {
@@ -47,12 +47,12 @@ public class RecipeIngredient {
         this.measurement = measurement;
     }
 
-    public Reciepe getRecipe() {
-        return reciepe;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setRecipe(Reciepe reciepe) {
-        this.reciepe = reciepe;
+    public void setRecipe(Recipe reciepe) {
+        this.recipe = reciepe;
     }
 
     @Override
@@ -64,12 +64,12 @@ public class RecipeIngredient {
                 Objects.equals(recipeIngredientID, that.recipeIngredientID) &&
                 Objects.equals(ingredient, that.ingredient) &&
                 measurement == that.measurement &&
-                Objects.equals(reciepe, that.reciepe);
+                Objects.equals(recipe, that.recipe);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(recipeIngredientID, ingredient, amount, measurement, reciepe);
+        return Objects.hash(recipeIngredientID, ingredient, amount, measurement, recipe);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class RecipeIngredient {
                 ", ingredient=" + ingredient +
                 ", amount=" + amount +
                 ", measurement=" + measurement +
-                ", reciepe=" + reciepe +
+                ", reciepe=" + recipe +
                 '}';
     }
 }
