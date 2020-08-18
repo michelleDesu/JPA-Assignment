@@ -1,9 +1,6 @@
 package se.lexicon.michelle.JPAAssignment.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +8,29 @@ public class RecipeIngredient {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private String recipeIngredientID;
+
+    @OneToMany( cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            },
+            fetch = FetchType.LAZY
+
+    )
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
+
+    @ManyToOne( cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    },
+            fetch = FetchType.EAGER
+
+    )
     Recipe recipe;
 
     public RecipeIngredient() {
