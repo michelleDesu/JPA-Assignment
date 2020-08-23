@@ -18,20 +18,21 @@ public class RecipeIngredient {
             fetch = FetchType.EAGER
 
     )
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
 
-    //ManyToOne???
-    @OneToMany( cascade = {
+    @ManyToOne( cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.DETACH,
             CascadeType.REFRESH
     },
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
 
     )
+    @JoinColumn(name = "recipe_id")
     Recipe recipe;
 
     public RecipeIngredient() {
@@ -76,8 +77,8 @@ public class RecipeIngredient {
         return recipe;
     }
 
-    public void setRecipe(Recipe reciepe) {
-        this.recipe = reciepe;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     @Override

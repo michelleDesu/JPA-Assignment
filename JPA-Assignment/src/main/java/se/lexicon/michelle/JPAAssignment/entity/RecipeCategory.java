@@ -1,9 +1,6 @@
 package se.lexicon.michelle.JPAAssignment.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +10,17 @@ public class RecipeCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     private String category;
+
+    @ManyToMany
+            (cascade ={
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            } ,
+                    fetch = FetchType.LAZY
+            )
+    //@JoinColumn(name = "recipe_id")
     private List<Recipe> recipes;
 
     public RecipeCategory() {

@@ -11,6 +11,16 @@ public class Recipe {
     private int recipeId;
 
     private String recipeName;
+
+    @OneToMany ( mappedBy = "recipe",
+            cascade  ={
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    } ,
+            fetch = FetchType.LAZY
+    )
     private List<RecipeIngredient> recipeIngredients;
 
     @OneToOne(cascade ={
@@ -21,7 +31,20 @@ public class Recipe {
     } ,
             fetch = FetchType.EAGER
     )
+    @JoinColumn(name = "instruction_id")
     private RecipeInstruction instruction;
+
+    @ManyToMany
+            (
+                    mappedBy = "recipes",
+                    cascade ={
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            } ,
+                    fetch = FetchType.LAZY
+            )
     private List<RecipeCategory> categories;
 
     public Recipe() {
